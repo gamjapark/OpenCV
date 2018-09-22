@@ -34,20 +34,20 @@ void main() {
 	for (int h = 0; h < HEIGHT; h++) {
 		for (int w = 0; w < WIDTH; w++) {
 			//흰색 배경 사각형 만들기
-			//BlackImg.at<uchar>(h, w) = 255;
+			//BackImg.at<uchar>(h, w) = 255;
 
 			//검은색 배경 사각형 만들기 
 			BackImg.at<uchar>(h, w) = 0;
 
 		}
 	}
-	//circle(BlackImg, Point(127, 127),50, color, CV_FILLED);
+	//circle(BackImg, Point(127, 127),50, color, CV_FILLED);
 	//하얀색 원 그리기 
 
-	//rectangle(BlackImg, Point(63, 63), Point(191, 192), color, CV_FILLED);
+	//rectangle(BackImg, Point(63, 63), Point(191, 192), color, CV_FILLED);
 	//하얀색 정사각형 그리기
 
-	imshow("black", BackImg);
+	imshow("Draw", BackImg);
 
 	waitKey(0);
 }
