@@ -6,6 +6,8 @@
 
 설치 URL : [https://opencv.org/releases.html](https://opencv.org/releases.html)
 
+
+
 ![](.gitbook/assets/image.png)
 
 해당 URL에서 원하는 version을 Download합니다.
@@ -22,7 +24,9 @@
 
 ![](.gitbook/assets/image%20%285%29.png)
 
-Visual Studio 프로젝트 생성 시 왼쪽 \[Visual C++\] -&gt; \[Windows 데스크톱\]에서 \[Windows 데스크톱 마법사\]를 통해 **프로젝트를 생성**합니다. 
+Visual Studio 프로젝트 생성 시 왼쪽 \[Visual C++\] -&gt; \[Windows 데스크톱\]에서 
+
+\[Windows 데스크톱 마법사\]를 통해 **프로젝트를 생성**합니다. 
 
 \(다른 설정으로 프로젝트 생성시, 미리 컴파일된 헤더도 같이 추가되기 때문에 빈 프로젝트로 생성하기 위함입니다.\)
 
