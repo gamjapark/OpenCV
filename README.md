@@ -5,7 +5,6 @@
 * Intel사에 의해 처음 발표된 영상처리 및 컴퓨터 비전 라이브러리\(1999\)
 * Open Source Project로 개발
 * 현재 - OpenCV Foundation에서 프로젝트 관리 중
-* 3.4 Version Release
 
 ## OpenCV 기능
 
@@ -22,6 +21,4 @@
 * Image I/O
 * Image Processing - Color Conversion, MFC
 * Image Processing - Interpolation
-
-
 
