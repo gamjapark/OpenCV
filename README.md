@@ -1,7 +1,3 @@
----
-description: Open Source Computer Vision에 대한 간략한 설명입니다.
----
-
 # OpenCV
 
 ## Introduction
