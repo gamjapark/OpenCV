@@ -6,7 +6,7 @@
 
 1. RGB565 \(High Color\)
 
-   ![](../.gitbook/assets/image%20%288%29.png)  
+   ![](../.gitbook/assets/image%20%289%29.png)  
    Red와 Blue에 5Bit, Green에 6Bit를 할당해서 총 16Bit 저장공간을 이용해서  
    다양한 색상을 표현합니다.  
 
@@ -14,7 +14,7 @@
    이는 국제 전기 표준 회의의 표준으로 등재되었으며,  
    때로는 8 Bit의 투명 값\(Alpha\)을 추가해 32Bit Color로 사용합니다.
 
-   ![](../.gitbook/assets/image%20%283%29.png)
+   ![](../.gitbook/assets/image%20%284%29.png)
 
 3. File Format = \*.jpg / \*jpeg - Image Compression : 원본 영상\(Raw Data\)를 손실 압축  - 파일의 헤더에 영상의 정보 및 압축 방식이 저장
 
@@ -30,7 +30,7 @@
 
 1. YUV444
 
-   ![](../.gitbook/assets/image%20%2811%29.png)
+   ![](../.gitbook/assets/image%20%2812%29.png)
 
 2. YUV422  
 
@@ -40,12 +40,12 @@
 3. YUV411  
 
 
-   ![](../.gitbook/assets/image%20%2822%29.png)
+   ![](../.gitbook/assets/image%20%2823%29.png)
 
 4. YUV420  
 
 
-   ![](../.gitbook/assets/image%20%2825%29.png)
+   ![](../.gitbook/assets/image%20%2826%29.png)
 
 File Format = \*.yuv / \*.raw
 
@@ -84,4 +84,37 @@ V = 0.713\(R - Y\) = 0.499R - 0.418G - 0.081B + 128
 G = Y - 0.344\(U - 128\) - 0.714\(V - 128\)
 
 B = Y + 1.772\(U - 128\)
+
+## Practice Using OpenCV
+
+이는 RGB에서 Y값을 계산하여 `imread` 시 type 값에 0을 넣는 것과 같은 결과를 얻을 수 있습니다.
+
+```cpp
+#include <opencv2/opencv.hpp>
+using namespace cv;
+
+void main() {
+
+	Mat img = imread("lena.jpg", 1);
+	Mat image_Gray(Size(512, 512), 0);
+	
+	for (int h = 0; h < 512; h++) {
+		for (int w = 0; w < 512; w++) {
+			Vec3b RGB = img.at<Vec3b>(h, w);
+			image_Gray.at<uchar>(h, w) = RGB[2] * 0.299 + RGB[1] * 0.587 
+											+ RGB[0] * 0.114;
+		}
+	}
+	imshow("input", img);
+	imshow("output", image_Gray);
+
+	waitKey(0);
+}
+```
+
+위의 코드는 다음과 같은 결과를 출력합니다.
+
+![](../.gitbook/assets/image%20%282%29.png)
+
+
 
