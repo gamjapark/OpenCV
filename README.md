@@ -18,7 +18,7 @@
 ## 목차
 
 * [Install & Setting](https://gamjapark.gitbook.io/useopencv/install-and-setting)
-* Image I/O
+* [Image I/O](https://gamjapark.gitbook.io/useopencv/imageio)
 * Image Processing - Color Conversion, MFC
 * Image Processing - Interpolation
 
