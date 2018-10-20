@@ -10,9 +10,13 @@
    Red와 Blue에 5Bit, Green에 6Bit를 할당해서 총 16Bit 저장공간을 이용해서  
    다양한 색상을 표현합니다.  
 
-2. RGB888 \(True Color\) == SRGB 이는 국제 전기 표준 회의의 표준으로 등재되었으며, 때로는 8 Bit의 투명 값\(Alpha\)을 추가해 32Bit Color로 사용합니다.
+2. RGB888 \(True Color\) == SRGB  
+   이는 국제 전기 표준 회의의 표준으로 등재되었으며,  
+   때로는 8 Bit의 투명 값\(Alpha\)을 추가해 32Bit Color로 사용합니다.
 
-![](../.gitbook/assets/image%20%283%29.png)
+   ![](../.gitbook/assets/image%20%283%29.png)
+
+3. File Format = \*.jpg / \*jpeg - Image Compression : 원본 영상\(Raw Data\)를 손실 압축  - 파일의 헤더에 영상의 정보 및 압축 방식이 저장
 
 ## YUV
 
@@ -43,10 +47,41 @@
 
    ![](../.gitbook/assets/image%20%2825%29.png)
 
-Format
+File Format = \*.yuv / \*.raw
 
-* YUV - .yuv\(Raw Data\) .raw 영상의 픽셀 값만으로 파일 구성이 되어 있습니다.
-* RGB - .jpg\(Raw Data 손실 압축\) .jpeg 파일의 Header에 영상의 정보 및 압축 방식이 저장되어 있습니다. 
+* 영상의 픽셀 값만으로 파일 구성이 되어 있습니다.
+* 영상을 분석하기 위해 영상 정보를 반드시 알아야 합니다\(폭, 높이, Color Format\)
+* BitStream 구성\(YUV444, YUV422\)
 
+## RGB -&gt; YUV 변환
 
+Y = 0.299R + 0.587G + 0.114B
+
+U = 0.564\(B - Y\) = -0.169R - 0.331G + 0.499B
+
+V = 0.713\(R - Y\) = 0.499R - 0.418G - 0.081B
+
+## YUV -&gt; RGB 변환
+
+R = Y + 1.402V
+
+G = Y - 0.344U - 0.714V
+
+B = Y + 1.772U
+
+## RGB -&gt; YCbCr 변환
+
+Y = 0.299R + 0.587G + 0.114B
+
+U = 0.564\(B - Y\) = -0.169R - 0.331G + 0.499B + 128
+
+V = 0.713\(R - Y\) = 0.499R - 0.418G - 0.081B + 128
+
+## YCbCr -&gt; RGB 변환
+
+ = Y + 1.402\(V - 128\)
+
+G = Y - 0.344\(U - 128\) - 0.714\(V - 128\)
+
+B = Y + 1.772\(U - 128\)
 
