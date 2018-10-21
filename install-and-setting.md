@@ -14,7 +14,7 @@
 
 저의 경우, **Opencv 3.1.0 Release version**을 Window10에서 사용하였습니다.
 
-![](.gitbook/assets/image%20%2814%29.png)
+![](.gitbook/assets/image%20%2818%29.png)
 
 위와 같이 C:\ 하위에 바로 **압축 해제**를 합니다.
 
@@ -22,7 +22,7 @@
 
 이제 설치는 모두 완료했고, OpenCV 사용을 위한 **설정을 시작**하겠습니다.
 
-![](.gitbook/assets/image%20%2816%29.png)
+![](.gitbook/assets/image%20%2820%29.png)
 
 Visual Studio 프로젝트 생성 시 왼쪽 \[Visual C++\] -&gt; \[Windows 데스크톱\]에서 
 
@@ -30,19 +30,19 @@ Visual Studio 프로젝트 생성 시 왼쪽 \[Visual C++\] -&gt; \[Windows 데�
 
 \(다른 설정으로 프로젝트 생성시, 미리 컴파일된 헤더도 같이 추가되기 때문에 빈 프로젝트로 생성하기 위함입니다.\)
 
-![](.gitbook/assets/image%20%2818%29.png)
+![](.gitbook/assets/image%20%2824%29.png)
 
 다음과 같이 **빈 프로젝트를 생성**합니다.
 
-![](.gitbook/assets/image%20%288%29.png)
+![](.gitbook/assets/image%20%2811%29.png)
 
 \[소스파일\] -&gt; \[추가\] -&gt; \[새 항목\] 에서 **소스 파일을 생성**합니다. 
 
-![](.gitbook/assets/image%20%2821%29.png)
+![](.gitbook/assets/image%20%2828%29.png)
 
 다음과 같이 **솔루션 플렛폼을 x64**로 설정해줍니다.
 
-![](.gitbook/assets/image%20%287%29.png)
+![](.gitbook/assets/image%20%2810%29.png)
 
 이제부터는 C:\에 압축 해제한 경우에 적용됩니다.
 
@@ -56,7 +56,7 @@ Visual Studio 프로젝트 생성 시 왼쪽 \[Visual C++\] -&gt; \[Windows 데�
 
 > C:\opencv\bulid\include
 
-![](.gitbook/assets/image%20%2828%29.png)
+![](.gitbook/assets/image%20%2837%29.png)
 
 ## Setting 3
 
@@ -66,7 +66,7 @@ Visual Studio 프로젝트 생성 시 왼쪽 \[Visual C++\] -&gt; \[Windows 데�
 
 > C:\opencv\build\x64\vc14\lib
 
-![](.gitbook/assets/image%20%2815%29.png)
+![](.gitbook/assets/image%20%2819%29.png)
 
 ## Setting 4
 
@@ -78,9 +78,9 @@ Visual Studio 프로젝트 생성 시 왼쪽 \[Visual C++\] -&gt; \[Windows 데�
 
 > opencv\_world310d.lib
 
-![](.gitbook/assets/image%20%2810%29.png)
+![](.gitbook/assets/image%20%2814%29.png)
 
-![](.gitbook/assets/image%20%2820%29.png)
+![](.gitbook/assets/image%20%2826%29.png)
 
 ## Setting 5
 
@@ -90,7 +90,7 @@ Visual Studio 프로젝트 생성 시 왼쪽 \[Visual C++\] -&gt; \[Windows 데�
 
 > PATH=C:\opencv\build\x64\vc14\bin; %PATH%;
 
-![](.gitbook/assets/image%20%2824%29.png)
+![](.gitbook/assets/image%20%2831%29.png)
 
 
 
