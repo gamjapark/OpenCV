@@ -35,7 +35,7 @@ void main(){
 
 위의 코드의 출력 영상은 다음과 같습니다.
 
-![](../.gitbook/assets/image%20%2833%29.png)
+![](../.gitbook/assets/image%20%2860%29.png)
 
 ## Practice Using C++
 

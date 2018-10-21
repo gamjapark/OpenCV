@@ -1,5 +1,7 @@
 # Sum & Subtract Image
 
+## Introduction
+
 픽셀 값에서 고정된 값을 더하거나 빼어서 영상의 밝기를 조절할 수 있습니다.
 
 이때, 더하거나 뺄 때, 0~255의 픽셀 값을 넘어가는 것에 대한 예외처리를 해야합니다.
@@ -119,9 +121,9 @@ void main() {
 
 Practice 1의 출력 결과는 다음과 같습니다.
 
-![](../.gitbook/assets/image%20%2813%29.png)
+![](../.gitbook/assets/image%20%2826%29.png)
 
-![](../.gitbook/assets/image%20%288%29.png)
+![](../.gitbook/assets/image%20%2813%29.png)
 
 ## Practice 2 Using OpenCV
 
@@ -228,7 +230,7 @@ void main() {
 
 Practice 2의 출력 결과는 다음과 같습니다.
 
-![](../.gitbook/assets/image%20%2835%29.png)
+![](../.gitbook/assets/image%20%2862%29.png)
 
-![](../.gitbook/assets/image%20%2838%29.png)
+![](../.gitbook/assets/image%20%2866%29.png)
 

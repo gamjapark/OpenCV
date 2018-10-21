@@ -23,6 +23,10 @@
   * [Color Conversion](https://gamjapark.gitbook.io/useopencv/image-processing/color-conversion)
   * [Draw Shape Image](https://gamjapark.gitbook.io/useopencv/image-processing/draw-shape-image)
   * [Sum & Subtract Image](https://gamjapark.gitbook.io/useopencv/image-processing/sum-and-subtract-image)
+  * [Interpolation](https://gamjapark.gitbook.io/useopencv/image-processing/interpolation)
+  * [Rotation](https://gamjapark.gitbook.io/useopencv/image-processing/rotation)
+  * [Histogram](https://gamjapark.gitbook.io/useopencv/image-processing/histogram)
+  * [Spatial Filtering](https://gamjapark.gitbook.io/useopencv/image-processing/spatial-filtering)
 
 
 

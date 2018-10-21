@@ -100,7 +100,7 @@ Test라는 이름으로 프로젝트를 생성하고 설정을 마친 후에
 
 프로젝트 폴더 내에 다음과 같이 입력 영상 `lena.jpg`을 넣어줍니다.
 
-![](.gitbook/assets/image%20%2825%29.png)
+![](.gitbook/assets/image%20%2850%29.png)
 
 ```cpp
 #include <opencv2/opencv.hpp>
@@ -120,7 +120,7 @@ void main(){
 
 imshow함수를 통해 `lena` 라는 title로 입력 영상을 확인할 수 있습니다. 
 
-![](.gitbook/assets/image%20%2817%29.png)
+![](.gitbook/assets/image%20%2831%29.png)
 
 {% hint style="info" %}
 여기서, imread의 type 값을 0으로 설정한다면,
@@ -131,12 +131,12 @@ Mat image = imread("lena.jpg", 0);
 
 이와 같은 image를 GRAYSCALE로 얻어낼 수 있습니다.
 
-![](.gitbook/assets/image%20%286%29.png)
+![](.gitbook/assets/image%20%289%29.png)
 {% endhint %}
 
 다음, imwrite함수를 통해 `lean_new.jpg` 라는 출력영상이 생성되는 것을 확인할 수 있습니다. 
 
-![](.gitbook/assets/image%20%2815%29.png)
+![](.gitbook/assets/image%20%2829%29.png)
 
 ## Practice Using C++
 
@@ -210,5 +210,5 @@ void main() {
 
 위는 다음과 같이 opencv를 활용해서 입출력 한 결과와 같음을 확인할 수 있습니다.
 
-![](.gitbook/assets/image%20%2836%29.png)
+![](.gitbook/assets/image%20%2863%29.png)
 

@@ -6,15 +6,15 @@
 
 
 
-![https://www.researchgate.net/figure/Figura-5-Modelo-de-cor-RGB-Fonte-REWAR-LENKA-2013\_fig1\_304356136](../.gitbook/assets/image%20%2822%29.png)
+![https://www.researchgate.net/figure/Figura-5-Modelo-de-cor-RGB-Fonte-REWAR-LENKA-2013\_fig1\_304356136](../.gitbook/assets/image%20%2841%29.png)
 
 RGB에 Bit를 각각 할당하여, 각 픽셀이 가지고 있는 색상 성분 값을 저장합니다.
 
-![](../.gitbook/assets/image%20%2827%29.png)
+![](../.gitbook/assets/image%20%2852%29.png)
 
 1. RGB565 \(High Color\)
 
-   ![](../.gitbook/assets/image%20%2812%29.png)  
+   ![](../.gitbook/assets/image%20%2823%29.png)  
    Red와 Blue에 5Bit, Green에 6Bit를 할당해서 총 16Bit 저장공간을 이용해서  
    다양한 색상을 표현합니다.  
 
@@ -22,7 +22,7 @@ RGB에 Bit를 각각 할당하여, 각 픽셀이 가지고 있는 색상 성분 
    이는 국제 전기 표준 회의의 표준으로 등재되었으며,  
    때로는 8 Bit의 투명 값\(Alpha\)을 추가해 32Bit Color로 사용합니다.
 
-   ![](../.gitbook/assets/image%20%285%29.png)
+   ![](../.gitbook/assets/image%20%288%29.png)
 
 3. File Format = \*.jpg / \*jpeg - Image Compression : 원본 영상\(Raw Data\)를 손실 압축  - 파일의 헤더에 영상의 정보 및 압축 방식이 저장
 
@@ -38,22 +38,22 @@ RGB에 Bit를 각각 할당하여, 각 픽셀이 가지고 있는 색상 성분 
 
 1. YUV444
 
-   ![](../.gitbook/assets/image%20%2816%29.png)
+   ![](../.gitbook/assets/image%20%2830%29.png)
 
 2. YUV422  
 
 
-   ![](../.gitbook/assets/image%20%282%29.png)
+   ![](../.gitbook/assets/image%20%283%29.png)
 
 3. YUV411  
 
 
-   ![](../.gitbook/assets/image%20%2830%29.png)
+   ![](../.gitbook/assets/image%20%2857%29.png)
 
 4. YUV420  
 
 
-   ![](../.gitbook/assets/image%20%2834%29.png)
+   ![](../.gitbook/assets/image%20%2861%29.png)
 
 File Format = \*.yuv / \*.raw
 
@@ -110,7 +110,7 @@ B = Y + 1.772\(U - 128\)
   * 영상의 왼쪽 최상단의 Pixel Data부터 차례대로 저장되어 있습니다.  
 
 
-    ![](../.gitbook/assets/image%20%287%29.png)
+    ![](../.gitbook/assets/image%20%2810%29.png)
 
   * channel\(RGB\)의 경우 B, G, R의 순서로 Data가 저장되어 있습니다.
 
@@ -190,7 +190,7 @@ void main(){
 
 위의 코드들은 다음과 같은 동일한 결과를 출력합니다.
 
-![](../.gitbook/assets/image%20%283%29.png)
+![](../.gitbook/assets/image%20%286%29.png)
 
 
 
