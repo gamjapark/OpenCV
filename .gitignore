@@ -1,0 +1,6 @@
+*.suo
+*.db
+*.ipch
+*.opendb
+*/Debug/
+*/Debug/*
