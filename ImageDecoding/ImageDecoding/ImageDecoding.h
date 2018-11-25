@@ -29,7 +29,6 @@ public:
 	void IDCT_Zigzag_Quantization(short * ptr, int img_W, int tableNo);
 	short getAbit(short x, int n);
 	short setAbit(short x, int n, int b);
-
 private:
 	unsigned char **outputImg;
 	int nHeight_in = 256, nWidth_in = 256;

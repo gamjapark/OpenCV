@@ -16,7 +16,7 @@ ImageDecoding::ImageDecoding(const char * filePath) {
 		depth = 1;
 	}
 
-	depth = 1;
+	depth = 3;
 	outputImg = new unsigned char*[nHeight_in];
 	for (int i = 0; i < nHeight_in; i++) {
 		outputImg[i] = new unsigned char[nWidth_in * depth];
@@ -35,14 +35,6 @@ void ImageDecoding::OnDeCompression(const char * filePath, const char * writePat
 	ifstream readfile;
 	readfile.open(filePath, ios::binary | ios::in);
 
-	/*
-	for (int i = 0; i < nHeight_in; i++) {
-	readfile.read((char *)inputImg[i], sizeof(unsigned char) * nWidth_in * depth);
-	}
-
-	readfile.close();
-	*/
-	depth = 1;
 	unsigned char *img;
 	short *Y = NULL, *Cb = NULL, *Cr = NULL;
 	int img_W = ((nWidth_in - 1) / 8 + 1) * 8;
@@ -79,6 +71,7 @@ void ImageDecoding::OnDeCompression(const char * filePath, const char * writePat
 		for (int j = 0; j < img_W; j = j + 8)
 		{
 			Decode(&readfile, &Y[i*img_W + j], 0, img_W, &cnt, &code);
+
 			if (depth == 3) {
 				Decode(&readfile, &Cb[i*img_W + j], 1, img_W, &cnt, &code);
 				Decode(&readfile, &Cr[i*img_W + j], 1, img_W, &cnt, &code);
@@ -88,8 +81,10 @@ void ImageDecoding::OnDeCompression(const char * filePath, const char * writePat
 	ReadEOI(&readfile);
 	readfile.close();
 
+
 	ofstream writefile;
 	writefile.open(writePath, ios::binary | ios::out);
+
 	if (depth == 3) {
 		int nBlocks_X = img_W / 8;
 		int nBlocks_Y = img_H / 8;
@@ -111,7 +106,7 @@ void ImageDecoding::OnDeCompression(const char * filePath, const char * writePat
 			}
 		}
 
-		for (i = 1; i < 64; i++)
+		for (i = 1; i <= nBlocks_X * nBlocks_Y - 1; i++)
 		{
 			DC1[i] = DC1[i] + DC1[i - 1];
 			DC2[i] = DC2[i] + DC2[i - 1];
@@ -148,9 +143,32 @@ void ImageDecoding::OnDeCompression(const char * filePath, const char * writePat
 			{
 				idx1 = i * img_W + j;
 				idx2 = i * (img_W * 3) + j * 3;
-				img[idx2] = Y[idx1] + 128;
-				img[idx2 + 1] = Cb[idx1] + 128;
-				img[idx2 + 2] = Cr[idx1] + 128;
+
+				if (Y[idx1] + 128 > 255.0)
+					img[idx2] = 255.0;
+				else if (Y[idx1] + 128 < 0.0)
+					img[idx2] = 0.0;
+				else
+					img[idx2] = Y[idx1] + 128;
+
+				if (Cb[idx1] + 128 > 255.0)
+					img[idx2 + 1] = 255.0;
+				else if (Cb[idx1] + 128 < 0.0)
+					img[idx2 + 1] = 0.0;
+				else
+					img[idx2 + 1] = Cb[idx1] + 128;
+
+				if (Cr[idx1] + 128 > 255.0)
+					img[idx2 + 2] = 255.0;
+				else if (Cr[idx1] + 128 < 0.0)
+					img[idx2 + 2] = 0.0;
+				else
+					img[idx2 + 2] = Cr[idx1] + 128;
+
+				//img[idx2] = Y[idx1] + 128;
+				//img[idx2 + 1] = Cb[idx1] + 128;
+				//img[idx2 + 2] = Cr[idx1] + 128;
+
 			}
 		}
 
@@ -190,7 +208,7 @@ void ImageDecoding::OnDeCompression(const char * filePath, const char * writePat
 			for (j = 0; j < img_W; j = j + 8)
 				DC[idx++] = Y[i*img_W + j];
 
-		for (int i = 1; i < nBlocks_X * nBlocks_Y; i++) {
+		for (int i = 1; i <= nBlocks_X * nBlocks_Y - 1; i++) {
 			DC[i] = DC[i] + DC[i - 1];
 		}
 
@@ -198,18 +216,21 @@ void ImageDecoding::OnDeCompression(const char * filePath, const char * writePat
 		for (i = 0; i < img_H; i = i + 8)
 			for (j = 0; j < img_W; j = j + 8)
 				Y[i*img_W + j] = DC[idx++];
-		
-		for (i = 0; i < img_H; i = i + 8) {
+
+		for (i = 0; i < img_H; i = i + 8)
 			for (j = 0; j < img_W; j = j + 8) {
-				
 				IDCT_Zigzag_Quantization(&Y[i*img_W + j], img_W, 0);
 			}
-		}
 
 
 		for (i = 0; i < nHeight_in; i++) {
 			for (j = 0; j < nWidth_in; j++) {
-				img[i*nWidth_in + j] = (unsigned char) (Y[i*nWidth_in + j] + 128);
+				if (Y[i*nWidth_in + j] + 128 > 255)
+					img[i*nWidth_in + j] = 255;
+				else if (Y[i*nWidth_in + j] + 128 < 0)
+					img[i*nWidth_in + j] = 0;
+				else
+					img[i*nWidth_in + j] = Y[i*nWidth_in + j] + 128;
 			}
 		}
 	}
@@ -232,7 +253,6 @@ void ImageDecoding::ReadDQT(ifstream * file) {
 	unsigned char QT1[64];
 
 	file->read((char *)marker, 2);
-
 	file->read((((char *)(&tableSize)) + 1), 1);
 	file->read((((char *)(&tableSize)) + 0), 1);
 
@@ -348,17 +368,18 @@ void ImageDecoding::ReadSOS(ifstream * file) {
 
 	//c = 0;
 	file->read((char *)&c, 1);
+
 	//c = 0x3f;
 	file->read((char *)&c, 1);
+
 	//c = 0;
 	file->read((char *)&c, 1);
-
 }
 void ImageDecoding::ReadEOI(ifstream * file) {
 	unsigned char marker[2];
 	file->read((char *)marker, 2);
-
 }
+
 
 void ImageDecoding::Decode(ifstream * file, short * ptr, int num, int img_W, int * cnt, unsigned char *code) {
 	unsigned short int DC_HUFFCODE[2][13] = {
@@ -468,6 +489,7 @@ void ImageDecoding::Decode(ifstream * file, short * ptr, int num, int img_W, int
 			for (int j = sizeIndex; j < size; j++) {
 				if ((*cnt) == 8) {
 					file->read((char *)code, 1);
+
 					if ((*code) == 0xFF) {
 						file->read((char *)code, 1);
 						(*code) = 0xFF;
@@ -478,6 +500,7 @@ void ImageDecoding::Decode(ifstream * file, short * ptr, int num, int img_W, int
 					x = 0;
 				}
 				temp[x] = getAbit((*code), (7 - (*cnt)));
+
 				x++;
 				(*cnt)++;
 			}
@@ -578,12 +601,14 @@ void ImageDecoding::Decode(ifstream * file, short * ptr, int num, int img_W, int
 			ptr[i*img_W + j] = block[i * 8 + j];
 		}
 	}
-
 }
+
 void ImageDecoding::WriteFile(ofstream * file, unsigned char * out)
 {
 	file->write((char *)out, nHeight_in*nWidth_in*depth);
 }
+
+
 void ImageDecoding::IDCT_Zigzag_Quantization(short * ptr, int img_W, int tableNo)
 {
 	unsigned char Qtb0[64] = { 16, 11, 12, 14, 12, 10, 16, 14,
@@ -630,15 +655,16 @@ void ImageDecoding::IDCT_Zigzag_Quantization(short * ptr, int img_W, int tableNo
 	}
 
 
-	short ZZ[64];
 	short temp[64];
 	for (int i = 0; i < 8; i++) {
-		for (int j = 0; j < 8; j++) {
-			temp[i * 8 + j] = ptr[i * img_W + j];
+		for (int j = 0; j < 8; j++)
+		{
+			temp[i * 8 + j] = ptr[i*img_W + j];
 		}
 	}
+	short ZZ[64];
+	int idx = 0;
 
-	int idx;
 	//Zigzag_
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++)
@@ -648,26 +674,31 @@ void ImageDecoding::IDCT_Zigzag_Quantization(short * ptr, int img_W, int tableNo
 		}
 	}
 
-	//IDCT
+
+	////IDCT
 	double cv1;
 	double cv2;
 	for (int x = 0; x < 8; x++) {
 		for (int y = 0; y < 8; y++) {
 			double result = 0.0;
-			if (0 == x) cv1 = 1.0 / sqrt(2.0);
-			else cv1 = 1.0;
-			if (0 == y) cv2 = 1.0 / sqrt(2.0);
-			else cv2 = 1.0;
 			for (int u = 0; u < 8; u++) {
 				for (int v = 0; v < 8; v++) {
-					result += ZZ[u * 8 + v] * cv1 * cv2 * cos(((2.0*x + 1.0)*u*PI) / (2.0 * 8)) * cos(((2.0*y + 1.0)*v*PI) / (2.0 * 8));
+					if (0 == u) cv1 = 1.0 / sqrt(2.0);
+					else cv1 = 1.0;
+					if (0 == v) cv2 = 1.0 / sqrt(2.0);
+					else cv2 = 1.0;
+
+					result += ZZ[u * 8 + v] * (cv1 * cv2) * cos(((2.0*x + 1.0)*u*PI) / (2.0 * 8)) * cos(((2.0*y + 1.0)*v*PI) / (2.0 * 8));
 				}
 			}
 			result *= ((2 / sqrt(8 * 8)));
+
 			ptr[x * img_W + y] = (short)result;
+
 		}
 	}
 }
+
 short ImageDecoding::getAbit(short x, int n)
 {
 	return (x&(1 << n)) >> n;
