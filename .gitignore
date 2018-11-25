@@ -1,6 +1,37 @@
-*.suo
-*.db
+# directory
+/Debug/
+
+# complied obj files
+*.slo
+*.lo
+*.o
+
+# obj file
+*.obj
+
+# precompiled headers
+*.gch
+*.pch
+
+# unnessary file
 *.ipch
-*.opendb
-*/Debug/
-*/Debug/*
+
+# compiled dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# module file
+*.mod
+
+# compiled static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# exe file
+*.exe
+*.out
+*.app
+.
