@@ -34,4 +34,12 @@
 *.exe
 *.out
 *.app
-.
+
+# file in debug directory
+*.ilk
+*.pdb
+*.log
+*.tlog
+*.idb
+*.lastbuildstate
+
