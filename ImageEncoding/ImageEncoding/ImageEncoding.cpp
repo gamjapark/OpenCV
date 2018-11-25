@@ -11,11 +11,9 @@ ImageEncoding::ImageEncoding(const char * filePath) {
 
 	if (strcmp(strchr(filePath, '.'), ".JPG") == 0 || strcmp(strchr(filePath, '.'), ".jpg") == 0) {
 			//jpg image
-		nFormat = FORMAT_RGB;
 		depth = 3;
 	}
 	else {	//gray image
-		nFormat = FORMAT_GRAY;
 		depth = 1;
 	}
 
@@ -543,8 +541,7 @@ void ImageEncoding::Encode(ofstream * file, short * ptr, int num, int img_W, int
 	symbol_2 = data[0];
 	symbol_1 = CountBits(symbol_2);
 	if (symbol_2 < 0) symbol_2 = symbol_2 - 1;
-	WriteCode(file, DC_HUFFCODE[num][symbol_1],
-		DC_HUFFSIZE[num][symbol_1], cnt);
+	WriteCode(file, DC_HUFFCODE[num][symbol_1], DC_HUFFSIZE[num][symbol_1], cnt);
 	WriteCode(file, (unsigned short)symbol_2, symbol_1, cnt);
 
 	for (k = 1; k <= 63; k++)

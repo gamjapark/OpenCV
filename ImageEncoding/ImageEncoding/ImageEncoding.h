@@ -28,8 +28,6 @@ public:
 
 private:
 	unsigned char **inputImg;
-
 	int nHeight_in = 256, nWidth_in = 256;
-	int nFormat;
 	int depth;
 };
