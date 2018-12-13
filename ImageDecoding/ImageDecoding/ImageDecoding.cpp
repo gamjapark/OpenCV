@@ -324,9 +324,15 @@ void ImageDecoding::ReadSOF(ifstream * file) {
 
 	file->read((char *)&c, 1);
 
+	nHeight_in = 0;
 	//영상 높이 읽기
-	file->read((((char *)(&w)) + 1), 1);
-	file->read((((char *)(&w)) + 0), 1);
+	for (int i = 0; i < 2; i++) {
+		file->read((char *)&c, 1);
+		nHeight_in += c * pow(256, i);
+	}
+	cout << nHeight_in << endl;
+	//file->read((((char *)(&w)) + 1), 1);
+	//file->read((((char *)(&w)) + 0), 1);
 	//영상 넓이 읽기
 	file->read((((char *)(&w)) + 1), 1);
 	file->read((((char *)(&w)) + 0), 1);
